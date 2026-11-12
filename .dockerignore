@@ -1,0 +1,17 @@
+__pycache__
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.venv/
+.git
+.gitignore
+.dockerignore
+.ipynb_checkpoints
+movies.ipynb
+movies_metadata.csv
+*.md
+.env
+.env.*
+

@@ -1,0 +1,35 @@
+services:
+  # =========================================================
+  # 1. FastAPI Backend API Service
+  # =========================================================
+  - type: web
+    name: movie-rec-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: TMDB_API_KEY
+        sync: false
+
+  # =========================================================
+  # 2. Streamlit Web App Frontend (Optional on Render)
+  # =========================================================
+  - type: web
+    name: movie-rec-frontend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: API_BASE
+        fromService:
+          name: movie-rec-api
+          type: web
+          property: host
+
