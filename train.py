@@ -1,14 +1,3 @@
-"""
-Movie Recommendation Model Training & Pipeline Serialization
-
-Reads raw 'movies_metadata.csv', cleans and preprocesses text metadata,
-fits TF-IDF vectorizer, and serializes model artifacts for FastAPI and Streamlit:
-  - df.pkl: Processed DataFrame containing movie metadata
-  - indices.pkl: Title to DataFrame index mapping
-  - tfidf.pkl: Fitted TfidfVectorizer
-  - tfidf_matrix.pkl: Sparse TF-IDF matrix (for fast cosine similarity)
-"""
-
 import ast
 import os
 import pickle
